@@ -5,12 +5,12 @@ struct ContentView: View {
     @State private var currentStoryIndex = 0
     @State private var storyProgress: CGFloat = 0
     @State private var storyTimer: Timer?
+    @State private var isPaused = false
     
     var body: some View {
         NavigationView {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 0) {
-                    // Profile header
+            ScrollView(.vertical) {
+                VStack() {
                     HStack {
                         Text("livantyefatania_")
                             .font(.title)
@@ -52,6 +52,7 @@ struct ContentView: View {
                             }
                             .padding(.leading, 8)
                         }
+                        .border(Color.gray, width: 1) //
                         .padding()
                         
                         // Action buttons
@@ -81,6 +82,7 @@ struct ContentView: View {
                                 }
                             }
                         }
+                        .border(Color.gray, width: 1) //
                         .padding(.horizontal)
                         
                         VStack(spacing: 8) {
@@ -95,6 +97,7 @@ struct ContentView: View {
                                 FoodTagView(emoji: "👨‍🍳", text: "Masak")
                             }
                         }
+                        .border(Color.gray, width: 1) //
                         .padding(.vertical, 8)
                         
                         VStack(alignment: .leading, spacing: 12) {
@@ -120,15 +123,16 @@ struct ContentView: View {
                                     .cornerRadius(20)
                                 }
                             }
+                            .border(Color.gray, width: 1) //
                             .padding(.horizontal)
                             
                             ZigzagRoadmapView()
                         }
-                        .padding(.top, 4)
+                        
+                        FAQView()
                     }
                 }
             }
-            
             // Bottom tab bar
             .overlay(
                 BottomTabBar(),
@@ -143,6 +147,7 @@ struct ContentView: View {
                             isPresented: $showStory,
                             currentIndex: $currentStoryIndex,
                             progress: $storyProgress,
+                            isHold: $isPaused,
                             stopTimer: stopStoryTimer
                         )
                     }
@@ -157,6 +162,8 @@ struct ContentView: View {
         
         storyTimer?.invalidate()
         storyTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+            if self.isPaused { return }
+            
             storyProgress += 0.005
             
             if storyProgress >= 1.0 {
@@ -165,12 +172,14 @@ struct ContentView: View {
                 
                 if currentStoryIndex >= 4 {
                     stopStoryTimer()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        showStory = false
-                    }
+                    showStory = false
                 }
             }
         }
+    }
+    
+    func pauseTimer() {
+        self.isPaused = self.isPaused == true ? false : true
     }
     
     func stopStoryTimer() {
@@ -233,6 +242,7 @@ struct ZigzagRoadmapView: View {
                 ActivityItemView(activity: activities[index], showConnector: index < activities.count - 1)
             }
         }
+        .border(Color.gray, width: 1) //
         .padding(.horizontal)
     }
 }
@@ -325,6 +335,7 @@ struct StoryView: View {
     @Binding var isPresented: Bool
     @Binding var currentIndex: Int
     @Binding var progress: CGFloat
+    @Binding var isHold: Bool
     var stopTimer: () -> Void
     
     let activities = [
@@ -402,7 +413,7 @@ struct StoryView: View {
                             Spacer()
                             
                             // Konten cerita
-                            ZStack {
+                            ZStack(alignment: .center) {
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.black.opacity(0.7))
                                     .padding(.horizontal)
@@ -414,8 +425,9 @@ struct StoryView: View {
                                     .padding(30)
                             }
                             .frame(height: geometry.size.height / 2.5)
+                            
                         }
-                        .padding(.bottom, 30)
+                        .padding(.bottom, 10)
                     }
                 }
                 
@@ -438,8 +450,17 @@ struct StoryView: View {
                         .fill(Color.clear)
                         .frame(width: geometry.size.width / 3)
                         .contentShape(Rectangle())
+                        .onTapGesture {
+                            isHold = isHold == false ? true : false
+                        }
+                        .overlay(
+                            isHold ?
+                                Image(systemName: "pause.circle.fill")
+                                    .font(.system(size: 50))
+                                    .foregroundColor(.white.opacity(0.8))
+                                : nil
+                        )
                     
-                    // Right area - next story
                     Rectangle()
                         .fill(Color.clear)
                         .frame(width: geometry.size.width / 3)
@@ -454,12 +475,29 @@ struct StoryView: View {
                             }
                         }
                 }
-            }
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button(action: {
+                            stopTimer()
+                            isPresented = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 22, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(8)
+                        }
+                        .padding()
+                    }
+                    Spacer()
+                }
+            }.frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
 }
 
-// Progress bar untuk story view
 struct ProgressBar: View {
     var progress: CGFloat
     
@@ -477,6 +515,121 @@ struct ProgressBar: View {
             }
         }
         .frame(height: 4)
+    }
+}
+
+struct FAQItem: Identifiable {
+    let id = UUID()
+    let question: String
+    let answer: String
+    var isExpanded: Bool = false
+}
+
+struct FAQView: View {
+    @State private var faqItems: [FAQItem] = [
+        FAQItem(
+            question: "What is Livanty's daily routine?",
+            answer: "Livanty follows a disciplined daily routine. She sleeps from 12 AM to 7 AM, attends university classes until afternoon, participates in Apple Academy activities during the afternoon, and dedicates her evenings to organizational activities and freelance responsibilities."
+        ),
+        FAQItem(
+            question: "What sports does Livanty enjoy?",
+            answer: "Livanty maintains a healthy lifestyle by regularly playing badminton, basketball, and running with her younger sibling. These activities help her stay fit and balanced despite her busy schedule."
+        ),
+        FAQItem(
+            question: "What roles does Livanty have in organizations?",
+            answer: "Livanty holds important positions in various organizations. She serves as the Finance and Fundraising Coordinator for the Student Union ISB and as Treasurer for the Leadcamp 2025 committee."
+        ),
+        FAQItem(
+            question: "What is Livanty's personality type?",
+            answer: "Livanty has an ENFJ-T personality type. This aligns with her friendly, open, and sociable nature, making her easily accepted in any environment and a pleasant companion for discussions and collaborations."
+        ),
+        FAQItem(
+            question: "How does Livanty manage her busy schedule?",
+            answer: "Livanty excels at time management, balancing university classes, Apple Academy activities, organizational roles, freelance work, and regular exercise. Her disciplined approach to scheduling allows her to remain productive despite having multiple commitments."
+        ),
+        FAQItem(
+            question: "What makes Livanty inspirational?",
+            answer: "Livanty's combination of leadership spirit, strong work ethic, and excellent time management makes her inspirational. She consistently fulfills her responsibilities across academics, organizations, and professional work while maintaining a healthy lifestyle."
+        )
+    ]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("FAQ")
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .padding(.top, 24)
+                .padding(.bottom, 10)
+            
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(0..<faqItems.count, id: \.self) { index in
+                    FAQItemView(
+                        item: $faqItems[index]
+                    )
+                    
+                    if index < faqItems.count - 1 {
+                        Divider()
+                            .padding(.horizontal)
+                    }
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.white)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            )
+        }
+        .border(Color.gray, width: 1) //
+        .padding(.horizontal)
+        .padding(.bottom, 30)
+    }
+}
+
+struct FAQItemView: View {
+    @Binding var item: FAQItem
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    item.isExpanded.toggle()
+                }
+            }) {
+                HStack(alignment: .center) {
+                    Text(item.question)
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.leading)
+                        .padding(.vertical, 16)
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color.primaryOrange)
+                        .rotationEffect(Angle(degrees: item.isExpanded ? 180 : 0))
+                        .frame(width: 24, height: 24)
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            .padding(.horizontal)
+            
+            if item.isExpanded {
+                Text(item.answer)
+                    .font(.system(size: 15))
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal)
+                    .padding(.bottom, 16)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        .background(item.isExpanded ? Color.gray.opacity(0.05) : Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
