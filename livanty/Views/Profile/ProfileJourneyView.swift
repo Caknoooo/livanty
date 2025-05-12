@@ -35,7 +35,6 @@ struct ProfileJourneyView: View {
                     .cornerRadius(20)
                 }
             }
-            .padding(.horizontal)
             
             ZigzagRoadmapView()
         }

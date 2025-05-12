@@ -11,12 +11,12 @@ struct FAQItemView: View {
     @Binding var item: FAQItem
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Button(action: {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    item.isExpanded.toggle()
-                }
-            }) {
+        Button(action: {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                item.isExpanded.toggle()
+            }
+        }) {
+            VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .center) {
                     Text(item.question)
                         .font(.system(size: 16, weight: .medium))
@@ -32,22 +32,23 @@ struct FAQItemView: View {
                         .rotationEffect(Angle(degrees: item.isExpanded ? 180 : 0))
                         .frame(width: 24, height: 24)
                 }
+                .padding(.horizontal)
+                
+                if item.isExpanded {
+                    Text(item.answer)
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal)
+                        .padding(.bottom, 16)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
             }
-            .buttonStyle(PlainButtonStyle())
-            .padding(.horizontal)
-            
-            if item.isExpanded {
-                Text(item.answer)
-                    .font(.system(size: 15))
-                    .foregroundColor(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal)
-                    .padding(.bottom, 16)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-            }
+            .frame(maxWidth: .infinity) // Penting: Memastikan tombol mengisi seluruh lebar
+            .background(item.isExpanded ? Color.gray.opacity(0.05) : Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
-        .background(item.isExpanded ? Color.gray.opacity(0.05) : Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .buttonStyle(PlainButtonStyle()) // Menggunakan PlainButtonStyle untuk menghilangkan efek highlight default
     }
 }
 
@@ -60,5 +61,6 @@ struct FAQItemViewPreview: PreviewProvider {
     
     static var previews: some View {
         FAQItemView(item: $item)
+            .padding()
     }
 }

@@ -21,7 +21,6 @@ struct ZigzagRoadmapView: View {
                 ActivityItemView(activity: activities[index], showConnector: index < activities.count - 1)
             }
         }
-        .padding(.horizontal)
     }
 }
 

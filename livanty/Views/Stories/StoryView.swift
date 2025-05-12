@@ -80,8 +80,7 @@ struct StoryView: View {
                                         .foregroundColor(.white)
                                 }
                                 .padding(.leading, 10)
-                                
-                                Spacer()
+        
                             }
                             .padding(.horizontal)
                             .padding(.top, 20)
@@ -170,6 +169,7 @@ struct StoryView: View {
                     Spacer()
                 }
             }.frame(width: geometry.size.width, height: geometry.size.height)
+            
         }
     }
 }

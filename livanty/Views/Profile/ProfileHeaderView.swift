@@ -39,7 +39,6 @@ struct ProfileHeaderView: View {
             }
             .padding(.leading, 8)
         }
-        .padding()
     }
 }
 

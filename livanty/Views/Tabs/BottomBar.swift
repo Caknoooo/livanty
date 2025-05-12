@@ -8,22 +8,25 @@
 import SwiftUI
 
 struct BottomTabBar: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        HStack(spacing: 0) {
-            ForEach(["house", "person.crop.circle"], id: \.self) { icon in
-                Button(action: {}) {
-                    VStack(spacing: 2) {
-                        Image(systemName: icon)
-                            .font(.system(size: 30))
-                            .foregroundColor(icon == "person.crop.circle" ? .primaryOrange : .black)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
+        TabView(selection: $selectedTab) {
+            HomeContentView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
                 }
-            }
+                .tag(0)
+            
+            ProfileContentView()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
+                .tag(1)
         }
-        .background(Color.white)
-        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: -2)
+        .accentColor(.primaryOrange)
     }
 }
 

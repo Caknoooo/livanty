@@ -41,7 +41,6 @@ struct FAQView: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
-                .padding(.top, 24)
                 .padding(.bottom, 10)
             
             LazyVStack(alignment: .leading, spacing: 0) {
@@ -65,8 +64,6 @@ struct FAQView: View {
                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
             )
         }
-        .padding(.horizontal)
-        .padding(.bottom, 30)
     }
 }
 

@@ -21,7 +21,6 @@ struct ProfileTagsView: View {
                 TagView(emoji: "👨‍🍳", text: "Masak")
             }
         }
-        .padding(.vertical, 8)
     }
 }
 
