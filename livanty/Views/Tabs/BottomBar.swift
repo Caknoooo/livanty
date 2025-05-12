@@ -9,6 +9,10 @@ import SwiftUI
 
 struct BottomTabBar: View {
     @State private var selectedTab = 0
+    @State private var showStory = false
+    @State private var currentStoryIndex = 0
+    @State private var storyProgress: CGFloat = 0
+    @State private var isPaused = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -19,7 +23,7 @@ struct BottomTabBar: View {
                 }
                 .tag(0)
             
-            ProfileContentView()
+            ProfileContentView(showStory: $showStory)
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                     Text("Profile")
@@ -27,6 +31,14 @@ struct BottomTabBar: View {
                 .tag(1)
         }
         .accentColor(.primaryOrange)
+        .fullScreenCover(isPresented: $showStory) {
+            StoryFullScreenView(
+                isPresented: $showStory,
+                currentIndex: $currentStoryIndex,
+                progress: $storyProgress,
+                isHold: $isPaused
+            )
+        }
     }
 }
 

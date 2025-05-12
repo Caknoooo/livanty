@@ -2,7 +2,7 @@
 //  ProgressBar.swift
 //  livanty
 //
-//  Created by M Naufal Badruttamam on 11/05/25.
+//  Created by M Naufal Badruttamam on 12/05/25.
 //
 
 import SwiftUI
@@ -28,6 +28,8 @@ struct ProgressBar: View {
 }
 
 #Preview {
-    ProgressBar(progress: 0.5)
+    ProgressBar(progress: 0.7)
         .frame(width: 100)
+        .padding()
+        .background(Color.black)
 }
