@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct SocialButton: View {
     let socialMedia: SocialMedia
     
@@ -18,6 +19,8 @@ struct SocialButton: View {
 }
 
 struct ProfileActionButtonsView: View {
+    @State private var showAchievements = false
+    
     let socialMedias: [SocialMedia] = [
         SocialMedia(
             imageName: "instagram_logo",
@@ -35,7 +38,9 @@ struct ProfileActionButtonsView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            Button(action: {}) {
+            Button(action: {
+                showAchievements = true
+            }) {
                 HStack {
                     Image(systemName: "trophy")
                     Text("Achievement")
@@ -46,11 +51,15 @@ struct ProfileActionButtonsView: View {
                 .foregroundColor(.white)
                 .cornerRadius(8)
             }
+            
             ForEach(socialMedias) { socialMedia in
                 SocialButton(socialMedia: socialMedia)
             }
         }
         .padding(.horizontal)
+        .fullScreenCover(isPresented: $showAchievements) {
+            AchievementModalView(isPresented: $showAchievements)
+        }
     }
 }
 

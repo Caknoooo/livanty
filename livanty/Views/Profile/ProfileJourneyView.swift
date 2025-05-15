@@ -23,6 +23,11 @@ struct ProfileJourneyView: View {
                 Button(action: {
                     showStory = true
                     startStoryTimer()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                            showStory = true
+                                            print("Set showStory to true, now: \(showStory)")
+                    }
                 }) {
                     HStack {
                         Image(systemName: "play.fill")
