@@ -2,7 +2,6 @@ import SwiftUI
 
 struct ProfileContentView: View {
     @State private var showStory = false
-    
     @State private var currentStoryIndex = 0
     @State private var storyProgress: CGFloat = 0
     @State private var isStoryHold = false

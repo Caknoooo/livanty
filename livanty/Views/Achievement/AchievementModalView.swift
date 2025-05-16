@@ -51,7 +51,7 @@ struct AchievementModalView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Achievements & Certifications")
                             .font(.title2)
@@ -85,16 +85,7 @@ struct AchievementModalView: View {
                 }
                 .background(Color.gray.opacity(0.1))
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                isPresented = false
-            }) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 17, weight: .bold))
-                    .foregroundColor(.gray)
-                    .padding(8)
-                    .background(Circle().fill(Color.gray.opacity(0.1)))
-            })
+            .padding(.top)
         }
     }
 }

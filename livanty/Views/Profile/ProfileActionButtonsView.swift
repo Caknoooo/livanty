@@ -57,8 +57,9 @@ struct ProfileActionButtonsView: View {
             }
         }
         .padding(.horizontal)
-        .fullScreenCover(isPresented: $showAchievements) {
+        .sheet(isPresented: $showAchievements) {
             AchievementModalView(isPresented: $showAchievements)
+                .presentationDragIndicator(.visible)
         }
     }
 }

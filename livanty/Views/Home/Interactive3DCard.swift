@@ -125,7 +125,7 @@ struct Interactive3DCard: View {
           }
           .padding(20)
         }
-        .frame(height: expandDetails ? 150 : 200)
+        .frame(height: expandDetails ? 130 : 180)
         .animation(.spring(), value: expandDetails)
 
         HStack(spacing: 0) {
@@ -396,7 +396,6 @@ struct Interactive3DCard_Previews: PreviewProvider {
             .background(Color(.systemBackground))
             .previewDisplayName("Sports Enthusiast Card (Collapsed)")
             
-            // Music Lover Card Preview
             Interactive3DCard(
                 card: previewCards[1],
                 rotationX: .constant(0),
@@ -410,7 +409,6 @@ struct Interactive3DCard_Previews: PreviewProvider {
             .background(Color(.systemBackground))
             .previewDisplayName("Music Lover Card (Expanded)")
             
-            // Music Lover Card in Dark Mode with Different Achievement
             Interactive3DCard(
                 card: previewCards[1],
                 rotationX: .constant(0),

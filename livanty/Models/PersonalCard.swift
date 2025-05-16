@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Model untuk kartu personal dengan properti tambahan untuk optimasi performa
 struct PersonalCard: Identifiable {
   var id: Int
   var title: String
@@ -20,10 +19,9 @@ struct PersonalCard: Identifiable {
   var achievements: [Achievements]
   var stats: [Stat]
   var quote: String
-  var particleCount: Int // Menambahkan kontrol jumlah partikel per kartu
+  var particleCount: Int
 }
 
-// Model untuk pencapaian
 struct Achievements: Identifiable {
   var id: Int
   var title: String
@@ -32,7 +30,6 @@ struct Achievements: Identifiable {
   var color: Color
 }
 
-// Model untuk statistik
 struct Stat {
   var value: String
   var label: String

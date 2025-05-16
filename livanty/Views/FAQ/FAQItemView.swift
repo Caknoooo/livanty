@@ -44,11 +44,11 @@ struct FAQItemView: View {
                         .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
-            .frame(maxWidth: .infinity) // Penting: Memastikan tombol mengisi seluruh lebar
+            .frame(maxWidth: .infinity)
             .background(item.isExpanded ? Color.gray.opacity(0.05) : Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
         }
-        .buttonStyle(PlainButtonStyle()) // Menggunakan PlainButtonStyle untuk menghilangkan efek highlight default
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

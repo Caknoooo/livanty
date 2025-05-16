@@ -127,7 +127,6 @@ struct HomeContentView: View {
             ProfileContentView()
           }
         }
-        .navigationBarHidden(true)
         .onAppear {
           initializeOnAppear()
         }
@@ -137,7 +136,7 @@ struct HomeContentView: View {
         .onReceive(achievementTimer) { _ in
           updateAchievementIndex()
         }
-    }
+    }.tint(Color.primaryOrange)
   }
 
   // MARK: - Extracted Views
