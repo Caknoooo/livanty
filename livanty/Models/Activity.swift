@@ -17,25 +17,25 @@ struct Activity: Identifiable {
     
     var storyContent: String {
         switch title {
-        case "Kuliah":
-            return "Setiap pagi aku bangun jam 7, menyiapkan diri dengan semangat untuk kuliah di Universitas Ciputra. Kampusku memiliki lingkungan yang inspiratif dan dosen-dosen yang supportif. Aku mengambil jurusan yang aku minati dan selalu berusaha aktif di kelas, berdiskusi dengan teman-teman, dan mengerjakan tugas dengan penuh dedikasi. Jadwal kuliah yang padat membuatku belajar mengelola waktu dengan baik."
+        case "College":
+            return "Every morning I wake up at 7, preparing myself enthusiastically for classes at Ciputra University. My campus has an inspiring environment and supportive professors. I'm studying a major that I'm passionate about and always try to be active in class, discussing with friends, and completing assignments with dedication. The packed class schedule has taught me to manage my time well."
         case "Apple Academy":
-            return "Siang hari adalah waktu berharga di Apple Academy. Ini adalah kesempatan emas untuk belajar pengembangan aplikasi dari para ahli industri. Di sini, aku berkolaborasi dengan teman-teman berbakat dalam project inovatif, dari ide hingga implementasi. Setiap sesi di Academy memperluas pengetahuanku tentang teknologi Apple dan mengajarkanku cara berpikir 'think different' ala Apple. Pengalaman ini sangat berharga untuk karirku ke depan."
-        case "Olahraga":
-            return "Sore hari adalah waktu untuk bergerak! Aku sangat menikmati bermain badminton dan basket dengan teman-teman. Terkadang aku juga berlari di sekitar kampus atau taman kota untuk menjaga kebugaran. Olahraga bukan hanya tentang kesehatan fisik bagiku, tapi juga cara untuk refreshing pikiran setelah seharian belajar. Momen-momen ini juga memperkuat persahabatan dengan teman-teman sepermainan."
-        case "Freelance & Organisasi":
-            return "Malam hari adalah waktuku untuk mengembangkan skill profesional dan sosial. Sebagai freelancer, aku mengerjakan berbagai proyek desain dan pengembangan aplikasi yang menantang. Selain itu, keterlibatanku dalam organisasi kampus mengajarkan leadership dan teamwork. Meski jadwalku padat, aku selalu menikmati setiap tanggung jawab karena passion yang kumiliki. Ini semua membentuk jati diriku yang multitalenta."
+            return "Afternoon is valuable time at Apple Academy. This is a golden opportunity to learn app development from industry experts. Here, I collaborate with talented friends on innovative projects, from idea to implementation. Every session at the Academy expands my knowledge about Apple technology and teaches me how to 'think different' the Apple way. This experience is invaluable for my future career."
+        case "Exercise":
+            return "Evening is time to move! I really enjoy playing badminton and basketball with friends. Sometimes I also run around campus or city parks to stay fit. Sports isn't just about physical health for me, but also a way to refresh my mind after a day of studying. These moments also strengthen friendships with my fellow players."
+        case "Freelance & Organization":
+            return "Night is my time to develop professional and social skills. As a freelancer, I work on various challenging design and app development projects. Additionally, my involvement in campus organizations teaches me leadership and teamwork. Although my schedule is packed, I always enjoy every responsibility because of my passion. All of this shapes my multitalented identity."
         default:
             return ""
         }
     }
-    
+
     var storyBackgroundName: String {
         switch title {
-        case "Kuliah": return "campus_background"
+        case "College": return "campus_background"
         case "Apple Academy": return "apple_academy_background"
-        case "Olahraga": return "sports_background"
-        case "Freelance & Organisasi": return "work_background"
+        case "Exercise": return "sports_background"
+        case "Freelance & Organization": return "work_background"
         default: return ""
         }
     }

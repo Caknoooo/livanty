@@ -11,7 +11,7 @@ struct ProfileHeaderView: View {
     var body: some View {
         HStack(alignment: .top) {
             ZStack {
-                Image(systemName: "person.fill")
+                Image("profile_photo")
                     .resizable()
                     .padding(2)
                     .frame(width: 84, height: 84)

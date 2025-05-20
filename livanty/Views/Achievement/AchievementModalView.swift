@@ -9,45 +9,69 @@ import SwiftUI
 
 struct AchievementModalView: View {
     @Binding var isPresented: Bool
-    
+
     let achievements = [
         Achievement(
-            title: "Apple Developer Academy Graduate",
-            description: "Berhasil menyelesaikan program Apple Developer Academy dengan proyek akhir mendapatkan nilai A+",
-            date: "Mei 2025",
-            icon: "applelogo",
+            title: "Full Score Achievement – ISB 2024",
+            description:
+                "Mendapatkan nilai sempurna dalam Independent School Benchmarking 2024",
+            date: "2024",
+            icon: "star.fill",
             isHighlighted: true
         ),
         Achievement(
-            title: "Hackathon Winner",
-            description: "Juara 1 pada Hackathon Nasional dengan mengembangkan aplikasi inovatif untuk membantu pelajar",
-            date: "Maret 2025",
-            icon: "medal",
+            title: "Peraih nilai tertinggi jurusan IPA kelas 12",
+            description:
+                "Mencapai nilai tertinggi di seluruh jurusan IPA pada kelas 12 SMAK Karitas III",
+            date: "2023-2024",
+            icon: "1.circle",
             isHighlighted: false
         ),
         Achievement(
-            title: "Certified iOS Developer",
-            description: "Mendapatkan sertifikasi resmi sebagai iOS Developer yang diakui internasional",
-            date: "Februari 2025",
-            icon: "checkmark.seal",
+            title:
+                "Peraih rata-rata nilai satuan pendidikan terbaik peringkat pertama kelas 12",
+            description:
+                "Mendapatkan peringkat 1 dengan rata-rata nilai tertinggi di kelas 12 SMAK Karitas III",
+            date: "2023-2024",
+            icon: "trophy",
             isHighlighted: false
         ),
         Achievement(
-            title: "Student of the Month",
-            description: "Dipilih sebagai mahasiswa terbaik bulan ini berdasarkan prestasi akademik dan non-akademik",
-            date: "Januari 2025",
-            icon: "star",
+            title: "Juara 3 bulu tangkis Dean's Cup 2023",
+            description:
+                "Meraih posisi ketiga dalam kompetisi bulu tangkis Dean's Cup",
+            date: "2023",
+            icon: "figure.badminton",
             isHighlighted: false
         ),
         Achievement(
-            title: "Best App Design Award",
-            description: "Memenangkan penghargaan untuk desain aplikasi terbaik dalam kompetisi desain UI/UX",
-            date: "Desember 2024",
-            icon: "paintbrush",
+            title: "Juara 2 lomba Badminton internal SMA 2022",
+            description:
+                "Meraih posisi kedua dalam kompetisi bulu tangkis tingkat sekolah",
+            date: "2022",
+            icon: "figure.badminton",
             isHighlighted: false
-        )
+        ),
+        Achievement(
+            title:
+                "Peraih rata-rata nilai satuan pendidikan terbaik peringkat pertama kelas 11",
+            description:
+                "Mendapatkan peringkat 1 dengan rata-rata nilai tertinggi di kelas 11 SMAK Karitas III",
+            date: "2022-2023",
+            icon: "trophy",
+            isHighlighted: false
+        ),
+        Achievement(
+            title:
+                "Peraih rata-rata nilai satuan pendidikan terbaik peringkat pertama kelas 10",
+            description:
+                "Mendapatkan peringkat 1 dengan rata-rata nilai tertinggi di kelas 10 SMAK Karitas III",
+            date: "2021-2022",
+            icon: "trophy",
+            isHighlighted: false
+        ),
     ]
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -56,23 +80,25 @@ struct AchievementModalView: View {
                         Text("Achievements & Certifications")
                             .font(.title2)
                             .fontWeight(.bold)
-                        
-                        Text("Prestasi dan sertifikasi yang diraih selama perjalanan akademik dan profesional")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+
+                        Text(
+                            "Prestasi dan sertifikasi yang diraih selama perjalanan akademik dan profesional"
+                        )
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.white)
-                    
+
                     Rectangle()
                         .fill(Color.gray.opacity(0.2))
                         .frame(height: 8)
-                    
+
                     VStack(spacing: 0) {
                         ForEach(achievements) { achievement in
                             AchievementItemView(achievement: achievement)
-                            
+
                             if achievement.id != achievements.last?.id {
                                 Divider()
                                     .padding(.leading, 56)

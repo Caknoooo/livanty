@@ -7,10 +7,10 @@
 import SwiftUI
 
 struct Achievement: Identifiable {
-    var id = UUID()
-    var title: String
-    var description: String
-    var date: String
-    var icon: String
-    var isHighlighted: Bool = false
+    let id = UUID()
+    let title: String
+    let description: String
+    let date: String
+    let icon: String
+    let isHighlighted: Bool
 }
