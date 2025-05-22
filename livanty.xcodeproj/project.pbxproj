@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5004CB762DDEA96000CE1756 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5004CB752DDEA95D00CE1756 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		50C0731A2DCB64FC009155C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5004CB752DDEA95D00CE1756 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		50C0730B2DCB64FA009155C1 /* livanty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = livanty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C073192DCB64FC009155C1 /* livantyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = livantyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C073232DCB64FC009155C1 /* livantyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = livantyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +80,7 @@
 		50C073022DCB64FA009155C1 = {
 			isa = PBXGroup;
 			children = (
+				5004CB752DDEA95D00CE1756 /* README.md */,
 				50C0730D2DCB64FA009155C1 /* livanty */,
 				50C0731C2DCB64FC009155C1 /* livantyTests */,
 				50C073262DCB64FC009155C1 /* livantyUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5004CB762DDEA96000CE1756 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

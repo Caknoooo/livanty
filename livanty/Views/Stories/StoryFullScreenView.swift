@@ -105,10 +105,9 @@ struct StoryFullScreenView: View {
                         }
                     }
                     
-                    HStack {
+                    HStack(spacing:0) {
                         Rectangle()
                             .fill(Color.clear)
-                            .frame(width: geometry.size.width / 3)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 if currentIndex > 0 {
@@ -119,7 +118,6 @@ struct StoryFullScreenView: View {
                         
                         Rectangle()
                             .fill(Color.clear)
-                            .frame(width: geometry.size.width / 3)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 isHold.toggle()
@@ -134,7 +132,6 @@ struct StoryFullScreenView: View {
                         
                         Rectangle()
                             .fill(Color.clear)
-                            .frame(width: geometry.size.width / 3)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 if currentIndex < activities.count - 1 {
