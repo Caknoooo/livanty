@@ -1,6 +1,6 @@
 # Livanty - Personal Profile App
 
-https://github.com/user-attachments/assets/a959f0f1-c6f4-4153-ab24-14140a9714c7
+https://github.com/user-attachments/assets/6ec1c74a-cefa-4e80-a4c8-44e406d4eb96
 
 🚀 **From Zero to SwiftUI: My Coding Adventure at Apple Developer Academy!** ✨
 
