@@ -111,7 +111,7 @@ This project was developed with guidance from amazing mentors at Apple Developer
 
 ```bash
 # Clone the repository
-git clone [repository-url]
+git clone https://github.com/Caknoooo/livanty.git
 
 # Open in Xcode
 open livanty.xcodeproj
